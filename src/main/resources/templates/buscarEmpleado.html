@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragmentos/header :: head"></head>
+<body>
+    <div th:insert="/fragmentos/header :: menu"></div>
+    <br>
+    <div class="container mt-4">
+
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">NOMBRE</th>
+                    <th scope="col">ROL</th>
+                    <th scope="col">ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Itera sobre los empleados encontrados -->
+                <tr th:each="empleado : ${empleados}">
+                    <th th:text="${empleado.id}" scope="row"></th>
+                    <td th:text="${empleado.nombre}"></td>
+                    <td th:text="${empleado.rol}"></td>
+                    <td>
+                        <!-- Agrega aquí los botones de acciones según tus necesidades -->
+                        <a th:href="@{/editarEmpleado/}+${empleado.id}" class="btn btn-success">Editar</a>
+                        <a th:href="@{/eliminarEmpleado/}+${empleado.id}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="funciones.js"></script>
+    <tbody>
+    <tr th:each="empleado : ${empleados}">
+    </tr>
+    <tr th:if="${empleados.isEmpty()}">
+        <td colspan="4">No se encontraron registros</td>
+    </tr>
+</tbody>
+</body>
+</html>
